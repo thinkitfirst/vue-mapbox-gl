@@ -80,6 +80,20 @@
 					this.mapOptions.container = 'map';
 				}
 
+				console.log('mapInit()')
+				if(document.querySelector('market-activity') !== null) {
+					console.log('found market-activity');
+					if(document.querySelector('market-activity').shadowRoot !== null) {
+						console.log('found shadow-root');
+	          console.log(document.querySelector('market-activity').shadowRoot);
+	          console.log(document.querySelector('market-activity').shadowRoot.getElementById('map-activity'));
+						this.mapOptions.container = document.querySelector('market-activity').shadowRoot.getElementById('map-activity');
+					}
+				} else {
+					console.log(this.mapOptions.container);
+					this.mapOptions.container = document.getElementById('map-activity');
+				}
+
 				//New Mapbox Instance
 				const map = new mapboxgl.Map(this.mapOptions);
 
@@ -114,7 +128,7 @@
 					this.$emit('map-resize', map);
 				});
 
-				//Map Webgl Context Lost 
+				//Map Webgl Context Lost
 				map.on('webglcontextlost', e => {
 					this.$emit('map-webglcontextlost', map, e);
 				});
@@ -348,7 +362,7 @@
 
 			}
 		},
-		beforeDestroy() { 
+		beforeDestroy() {
 			this._map.remove();
 		}
 	};
