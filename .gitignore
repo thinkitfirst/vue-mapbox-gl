@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-/node_modules
-=======
 # Logs
 logs
 *.log
@@ -23,7 +20,7 @@ node_modules/
 .yarn-integrity
 
 # Build artifacts
-dist
+# dist
 
 # OS generated files
 .DS_Store
@@ -33,4 +30,3 @@ dist
 .Trashes
 ehthumbs.db
 Thumbs.db
->>>>>>> 81728ac520098988b300a377950bba816b66fa43
