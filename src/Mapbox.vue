@@ -29,7 +29,6 @@ export default class Mapbox extends Vue {
   @Prop({ required: true }) readonly accessToken: string
   @Prop({ required: true }) readonly mapOptions: mapboxgl.MapboxOptions
   @Prop({ required: false, default: '' }) readonly shadowRoot: string
-  @Prop({ required: false, default: {} }) readonly document: Element
   @Prop({
     default: () => {
       return {
@@ -113,17 +112,15 @@ export default class Mapbox extends Vue {
 
     // Check if this is in the Shadow Dom
     if (this.shadowRoot && this.mapOptions.container !== null) {
-      if (this.document !== null) {
-        if (this.document.querySelector(this.shadowRoot) !== null) {
-          if (
-            this.document.querySelector(this.shadowRoot).shadowRoot !== null
-          ) {
+      if (document !== null) {
+        if (document.querySelector(this.shadowRoot) !== null) {
+          if (document.querySelector(this.shadowRoot).shadowRoot !== null) {
             if (
-              this.document
+              document
                 .querySelector(this.shadowRoot)
                 .shadowRoot.getElementById(this.mapOptions.container) !== null
             ) {
-              this.mapOptions.container = this.document
+              this.mapOptions.container = document
                 .querySelector(this.shadowRoot)
                 .shadowRoot.getElementById(this.mapOptions.container)
             }
